@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Converter Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .converter-container {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .converter-container h2 {
+      color: #007bff;
+      margin-bottom: 15px;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    label.upload-btn {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-bottom: 15px;
+      transition: 0.3s;
+    }
+
+    label.upload-btn:hover {
+      background: #0056b3;
+    }
+
+    .preview {
+      margin: 15px 0;
+    }
+
+    .preview img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 2px solid #007bff;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      font-size: 15px;
+      border-radius: 6px;
+      border: 1px solid #007bff;
+    }
+
+    button {
+      background: #007bff;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      border: none;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    @media (max-width: 500px) {
+      .converter-container {
+        padding: 15px;
+      }
+      label.upload-btn, button, select {
+        font-size: 14px;
+        padding: 9px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="converter-container">
+    <h2>Image Converter</h2>
+    
+    <!-- Upload -->
+    <input type="file" id="upload" accept="image/*">
+    <label for="upload" class="upload-btn">Choose Image</label>
+    
+    <!-- Preview -->
+    <div class="preview" id="preview"></div>
+    
+    <!-- Format Select -->
+    <select id="format">
+      <option value="image/png">Convert to PNG</option>
+      <option value="image/jpeg">Convert to JPG</option>
+      <option value="image/webp">Convert to WEBP</option>
+    </select>
+    
+    <!-- Convert & Download -->
+    <button onclick="convertImage()">Convert & Download</button>
+  </div>
+
+  <script>
+    const uploadInput = document.getElementById('upload');
+    const preview = document.getElementById('preview');
+    let uploadedImage = null;
+
+    uploadInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          uploadedImage = new Image();
+          uploadedImage.src = event.target.result;
+          uploadedImage.onload = function() {
+            preview.innerHTML = `<img src="${uploadedImage.src}" alt="Preview">`;
+          };
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function convertImage() {
+      if (!uploadedImage) {
+        alert("Please upload an image first!");
+        return;
+      }
+
+      const format = document.getElementById('format').value;
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = uploadedImage.width;
+      canvas.height = uploadedImage.height;
+      ctx.drawImage(uploadedImage, 0, 0);
+
+      const convertedData = canvas.toDataURL(format, 0.9);
+
+      // Download link
+      const link = document.createElement('a');
+      link.href = convertedData;
+      link.download = `converted.${format.split('/')[1]}`;
+      link.click();
+    }
+  </script>
+</body>
+</html>
