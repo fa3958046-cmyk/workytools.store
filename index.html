@@ -618,4 +618,115 @@
                 
                 <div class="tool-card">
                     <div class="tool-icon-small">
-                        <i class="fas fa-sort-alp
+                        <i class="fas fa-sort-alpha-down"></i>
+                    </div>
+                    <h3 class="tool-name">Word & Character Counter</h3>
+                    <p class="tool-description">Count words, characters, and sentences in your text.</p>
+                    <button class="tool-button">Use Tool</button>
+                </div>
+            </div>
+            
+            <!-- Web/Developer Tools -->
+            <h2 class="section-title">🌐 Web/Developer Tools</h2>
+            <p class="section-description">Essential tools for developers and web professionals.</p>
+            
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="tool-name">HTML/CSS/JS Minifier</h3>
+                    <p class="tool-description">Minify your code to reduce file size and improve loading times.</p>
+                    <button class="tool-button">Use Tool</button>
+                </div>
+                
+                <div class="tool-card">
+                    <div class="tool-icon-small">
+                        <i class="fas fa-brackets-curly"></i>
+                    </div>
+                    <h3 class="tool-name">JSON Formatter & Validator</h3>
+                    <p class="tool-description">Format and validate JSON data for readability and correctness.</p>
+                    <button class="tool-button">Use Tool</button>
+                </div>
+            </div>
+            
+            <!-- More sections would continue here... -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">Workytools</div>
+                    <p class="footer-tagline">Simplifying your digital life with powerful, easy-to-use tools.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="#">Home</a>
+                    <a href="#tools">Tools</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Use</a>
+                </div>
+                
+                <div class="footer-contact">
+                    <i class="fas fa-envelope"></i>
+                    <span>fa3958046@gmail.com</span>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Workytools. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBar = document.querySelector('.search-bar');
+            const toolCards = document.querySelectorAll('.tool-card');
+            
+            searchBar.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                toolCards.forEach(card => {
+                    const toolName = card.querySelector('.tool-name').textContent.toLowerCase();
+                    const toolDescription = card.querySelector('.tool-description').textContent.toLowerCase();
+                    
+                    if (toolName.includes(searchTerm) || toolDescription.includes(searchTerm)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Mobile menu toggle (basic functionality)
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            const contactEmail = document.querySelector('.contact-email');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                    contactEmail.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    contactEmail.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '70px';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.background = 'white';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
