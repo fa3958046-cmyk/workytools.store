@@ -1,5 +1,4 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -8,52 +7,97 @@
   <title>Barcode Generator</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #eef8ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #eef8ff, #d9ecff);
       margin: 0;
       padding: 20px;
       text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .container {
-      max-width: 400px;
-      margin: auto;
+      max-width: 450px;
+      margin: 20px auto;
       background: #fff;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+      position: relative;
     }
 
     h2 {
       color: #007bff;
+      margin-bottom: 25px;
+      font-size: 28px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 600;
     }
 
     input[type="text"] {
       width: 100%;
-      padding: 10px;
+      padding: 12px 15px;
       font-size: 16px;
-      margin-top: 10px;
       border: 1px solid #ccc;
       border-radius: 10px;
+      box-sizing: border-box;
+      transition: all 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+      outline: none;
     }
 
     button {
       margin-top: 15px;
-      padding: 10px 20px;
+      padding: 12px 25px;
       background-color: #007bff;
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
       font-size: 16px;
+      font-weight: 600;
+      transition: all 0.3s;
+      width: 100%;
     }
 
     button:hover {
       background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     #barcode {
-      margin-top: 20px;
+      margin: 25px 0;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 10px;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #barcodeSvg {
+      max-width: 100%;
+      height: auto;
     }
 
     #downloadBtn {
@@ -65,17 +109,95 @@
     #downloadBtn:hover {
       background-color: #1e7e34;
     }
+
+    .ad-container {
+      margin: 25px 0;
+      padding: 15px;
+      background-color: #f5f9ff;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px dashed #007bff;
+    }
+
+    .ad-label {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .footer {
+      margin-top: 20px;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 20px;
+        margin: 10px;
+      }
+      
+      h2 {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Barcode Generator</h2>
-    <input type="text" id="barcodeText" placeholder="Enter text or number" />
+    
+    <!-- Top Ad Container -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <!-- Google AdSense Ad Unit -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/9505095825"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/9505095825"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+    <div class="input-group">
+      <label for="barcodeText">Enter text or number:</label>
+      <input type="text" id="barcodeText" placeholder="Type here to generate barcode" />
+    </div>
+    
     <button onclick="generateBarcode()">Generate Barcode</button>
+    
     <div id="barcode">
       <svg id="barcodeSvg"></svg>
     </div>
+    
     <button id="downloadBtn" onclick="downloadBarcode()">Download Barcode</button>
+    
+    <!-- Bottom Ad Container -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <!-- Google AdSense Ad Unit -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+    <div class="footer">
+      <p>Generate barcodes instantly for products, inventory, or personal use</p>
+    </div>
   </div>
 
   <!-- JsBarcode CDN -->
@@ -86,19 +208,26 @@
       const downloadBtn = document.getElementById("downloadBtn");
 
       if (text === "") {
-        alert("Please enter some text.");
+        alert("Please enter some text to generate a barcode.");
         return;
       }
 
-      JsBarcode("#barcodeSvg", text, {
-        format: "CODE128",
-        lineColor: "#000",
-        width: 2,
-        height: 100,
-        displayValue: true
-      });
+      try {
+        JsBarcode("#barcodeSvg", text, {
+          format: "CODE128",
+          lineColor: "#000",
+          width: 2,
+          height: 100,
+          displayValue: true,
+          fontOptions: "bold",
+          fontSize: 16
+        });
 
-      downloadBtn.style.display = "inline-block";
+        downloadBtn.style.display = "inline-block";
+      } catch (error) {
+        alert("Error generating barcode. Please try a different text.");
+        console.error(error);
+      }
     }
 
     function downloadBarcode() {
@@ -111,10 +240,18 @@
       const link = document.createElement("a");
       link.href = url;
       link.download = "barcode.svg";
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     }
+    
+    // Allow Enter key to generate barcode
+    document.getElementById("barcodeText").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        generateBarcode();
+      }
+    });
   </script>
 </body>
 </html>
-
-  
