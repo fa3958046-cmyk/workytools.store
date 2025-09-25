@@ -1,5 +1,4 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -66,11 +65,20 @@
       font-size: 14px;
       color: #555;
     }
+
+    .ads-box {
+      margin: 20px auto;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
   <h2>Palette Generator</h2>
+
+  <!-- ✅ Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/2826354448"
+     crossorigin="anonymous"></script>
 
   <div class="palette-box" id="paletteBox">
     <!-- Colors will appear here -->
@@ -78,6 +86,19 @@
 
   <button onclick="generatePalette()">Generate Palette</button>
   <div class="note">Click a color to copy its HEX value</div>
+
+  <!-- ✅ Google AdSense Ad Placement -->
+  <div class="ads-box">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/2826354448"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <script>
     function getRandomColor() {
@@ -113,6 +134,3 @@
 
 </body>
 </html>
-
-  
-  
