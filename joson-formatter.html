@@ -1,11 +1,13 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JSON Formatter & Validator Tool</title>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/2826354448"
+     crossorigin="anonymous"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,18 +16,31 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
     }
 
     h2 {
       color: #007bff;
       text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 14px;
     }
 
     #textBox {
-      width: 90%;
-      max-width: 600px;
+      width: 100%;
       min-height: 150px;
-      padding: 10px;
+      padding: 15px;
       font-size: 16px;
       border-radius: 8px;
       border: 1px solid #ccc;
@@ -34,6 +49,17 @@
       outline: none;
       overflow-y: auto;
       white-space: pre-wrap;
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+      resize: vertical;
+    }
+
+    .button-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     button {
@@ -44,11 +70,29 @@
       color: white;
       border-radius: 8px;
       cursor: pointer;
-      margin-bottom: 15px;
+      transition: background-color 0.3s;
+      flex: 1;
+      min-width: 150px;
     }
 
     button:hover {
       background-color: #0056b3;
+    }
+
+    button.copy-btn {
+      background-color: #28a745;
+    }
+
+    button.copy-btn:hover {
+      background-color: #218838;
+    }
+
+    button.clear-btn {
+      background-color: #dc3545;
+    }
+
+    button.clear-btn:hover {
+      background-color: #c82333;
     }
 
     #output {
@@ -56,36 +100,151 @@
       margin-top: 20px;
       color: #333;
       white-space: pre-wrap;
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-family: 'Courier New', monospace;
+      min-height: 100px;
+      display: none;
     }
 
     #error {
-      color: red;
+      color: #dc3545;
       font-weight: bold;
+      margin-top: 10px;
+      padding: 10px;
+      background: #ffe6e6;
+      border-radius: 5px;
+      display: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .success {
+      color: #28a745;
+      font-weight: bold;
+      margin-top: 10px;
+      padding: 10px;
+      background: #e6ffe6;
+      border-radius: 5px;
+      display: none;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Ad Container Styles */
+    .ad-container {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .ad-label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+      
+      .button-container {
+        flex-direction: column;
+      }
+      
+      button {
+        width: 100%;
+      }
+      
+      .ad-container {
+        margin: 15px 0;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <!-- Top Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/2826354448"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
 
-  <h2>JSON Formatter & Validator Tool</h2>
-
-  <div id="textBox" contenteditable="true" placeholder="Paste your JSON code here..."></div>
-
-  <button onclick="formatAndValidateJSON()">Format & Validate JSON</button>
-
-  <div id="error"></div>
-  <div id="output"></div>
+    <h2>JSON Formatter & Validator Tool</h2>
+    <p class="subtitle">Paste your JSON code to format and validate it</p>
+    
+    <div id="textBox" contenteditable="true" placeholder="Paste your JSON code here..."></div>
+    
+    <div class="button-container">
+      <button onclick="formatAndValidateJSON()">Format & Validate JSON</button>
+      <button class="copy-btn" onclick="copyFormattedJSON()">Copy Formatted JSON</button>
+      <button class="clear-btn" onclick="clearAll()">Clear All</button>
+    </div>
+    
+    <!-- Middle Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/2826354448"
+           data-ad-slot="YYYYYYYYYY"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+    <div id="error"></div>
+    <div class="success" id="success"></div>
+    <div id="output"></div>
+    
+    <!-- Bottom Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/2826354448"
+           data-ad-slot="ZZZZZZZZZZ"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
 
   <script>
     function formatAndValidateJSON() {
       const content = document.getElementById("textBox").innerText.trim();
       const errorElement = document.getElementById("error");
       const outputElement = document.getElementById("output");
+      const successElement = document.getElementById("success");
 
-      errorElement.innerText = ''; // Reset error message
-      outputElement.innerText = ''; // Reset output message
+      // Reset messages
+      errorElement.style.display = 'none';
+      successElement.style.display = 'none';
+      outputElement.style.display = 'none';
 
       if (!content) {
         errorElement.innerText = "Please paste valid JSON data.";
+        errorElement.style.display = 'block';
         return;
       }
 
@@ -97,16 +256,66 @@
         const formattedJSON = JSON.stringify(jsonObject, null, 2);
 
         // Display formatted JSON
-        outputElement.innerText = "Formatted JSON:\n" + formattedJSON;
+        outputElement.innerText = formattedJSON;
+        outputElement.style.display = 'block';
+        
+        // Show success message
+        successElement.innerText = "✓ JSON is valid and formatted successfully!";
+        successElement.style.display = 'block';
 
       } catch (e) {
         // If parsing fails, display error message
         errorElement.innerText = "Invalid JSON: " + e.message;
+        errorElement.style.display = 'block';
       }
     }
-  </script>
 
+    function copyFormattedJSON() {
+      const outputElement = document.getElementById("output");
+      const successElement = document.getElementById("success");
+      
+      if (outputElement.style.display === 'none') {
+        successElement.innerText = "Please format JSON first before copying.";
+        successElement.style.display = 'block';
+        return;
+      }
+      
+      const text = outputElement.innerText;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        successElement.innerText = "✓ Formatted JSON copied to clipboard!";
+        successElement.style.display = 'block';
+      }).catch(err => {
+        successElement.innerText = "Failed to copy. Please select and copy manually.";
+        successElement.style.display = 'block';
+        console.error('Copy failed:', err);
+      });
+    }
+
+    function clearAll() {
+      document.getElementById("textBox").innerText = "";
+      document.getElementById("output").innerText = "";
+      document.getElementById("output").style.display = 'none';
+      document.getElementById("error").style.display = 'none';
+      document.getElementById("success").style.display = 'none';
+    }
+
+    // Add placeholder behavior for contenteditable div
+    const textBox = document.getElementById("textBox");
+    textBox.addEventListener('focus', function() {
+      if (this.innerText === "Paste your JSON code here...") {
+        this.innerText = "";
+      }
+    });
+    
+    textBox.addEventListener('blur', function() {
+      if (this.innerText === "") {
+        this.innerText = "Paste your JSON code here...";
+      }
+    });
+
+    // Initialize placeholder text
+    textBox.innerText = "Paste your JSON code here...";
+  </script>
 </body>
 </html>
-
-  
