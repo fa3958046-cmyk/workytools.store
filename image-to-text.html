@@ -1,11 +1,13 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Image to Text Tool</title>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/2826354448"
+     crossorigin="anonymous"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -24,6 +26,14 @@
     h1 {
       text-align: center;
       color: #007bff;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
 
     .upload-section {
@@ -32,6 +42,7 @@
       padding: 2rem;
       text-align: center;
       border-radius: 10px;
+      margin-bottom: 20px;
     }
 
     input[type="file"] {
@@ -44,6 +55,12 @@
       padding: 0.5rem 1rem;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s;
+      display: inline-block;
+    }
+
+    label[for="imageInput"]:hover {
+      background-color: #0056b3;
     }
 
     #output {
@@ -52,16 +69,64 @@
       padding: 1rem;
       border-radius: 5px;
       white-space: pre-wrap;
+      min-height: 100px;
+      border: 1px solid #b8d4ff;
     }
 
     button.copy-btn {
       margin-top: 0.5rem;
-      background-color: #007bff;
+      background-color: #28a745;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s;
+      width: 100%;
+    }
+
+    button.copy-btn:hover {
+      background-color: #218838;
+    }
+
+    /* Ad Container Styles */
+    .ad-container {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+      border: 1px solid #e9ecef;
+    }
+
+    .ad-label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 5px;
+    }
+
+    .status {
+      text-align: center;
+      margin: 10px 0;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 6px;
+      background-color: #e0e0e0;
+      border-radius: 3px;
+      margin: 10px 0;
+      overflow: hidden;
+      display: none;
+    }
+
+    .progress {
+      height: 100%;
+      background-color: #007bff;
+      width: 0%;
+      transition: width 0.3s;
     }
 
     @media (max-width: 600px) {
@@ -72,18 +137,72 @@
       .upload-section {
         padding: 1rem;
       }
+      
+      .ad-container {
+        margin: 15px 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Image to Text</h1>
+    <!-- Top Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/2826354448"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <h1>Image to Text Converter</h1>
+    <p class="subtitle">Upload an image to extract text using OCR technology</p>
+    
     <div class="upload-section">
       <label for="imageInput">Upload Image</label>
       <input type="file" id="imageInput" accept="image/*" />
     </div>
+    
+    <div class="status" id="status">Ready to process images</div>
+    <div class="progress-bar" id="progressBar">
+      <div class="progress" id="progress"></div>
+    </div>
+    
+    <!-- Middle Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/2826354448"
+           data-ad-slot="YYYYYYYYYY"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
     <div id="output" style="display:none;"></div>
     <button class="copy-btn" style="display:none;" onclick="copyText()">Copy Text</button>
+    
+    <!-- Bottom Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/2826354448"
+           data-ad-slot="ZZZZZZZZZZ"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.4/dist/tesseract.min.js"></script>
@@ -91,6 +210,9 @@
     const imageInput = document.getElementById('imageInput');
     const output = document.getElementById('output');
     const copyBtn = document.querySelector('.copy-btn');
+    const statusEl = document.getElementById('status');
+    const progressBar = document.getElementById('progressBar');
+    const progress = document.getElementById('progress');
 
     imageInput.addEventListener('change', async () => {
       if (imageInput.files.length === 0) return;
@@ -101,13 +223,34 @@
       reader.onload = async () => {
         output.style.display = 'block';
         output.textContent = 'Processing...';
+        copyBtn.style.display = 'none';
+        progressBar.style.display = 'block';
+        progress.style.width = '0%';
+        statusEl.textContent = 'Initializing OCR engine...';
 
         try {
-          const result = await Tesseract.recognize(reader.result, 'eng');
-          output.textContent = result.data.text;
+          const result = await Tesseract.recognize(
+            reader.result, 
+            'eng',
+            {
+              logger: m => {
+                if (m.status === 'recognizing text') {
+                  const p = m.progress * 100;
+                  progress.style.width = `${p}%`;
+                  statusEl.textContent = `Processing: ${Math.round(p)}%`;
+                }
+              }
+            }
+          );
+          
+          output.textContent = result.data.text || 'No text detected in the image.';
           copyBtn.style.display = 'inline-block';
+          statusEl.textContent = 'Text extraction completed!';
+          progressBar.style.display = 'none';
         } catch (err) {
-          output.textContent = 'Error processing image.';
+          output.textContent = 'Error processing image. Please try again with a clearer image.';
+          statusEl.textContent = 'Error occurred during processing';
+          progressBar.style.display = 'none';
           console.error(err);
         }
       };
@@ -118,11 +261,19 @@
     function copyText() {
       const text = output.textContent;
       navigator.clipboard.writeText(text).then(() => {
-        alert('Text copied to clipboard!');
+        // Visual feedback for copy action
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = 'Copied!';
+        copyBtn.style.backgroundColor = '#28a745';
+        
+        setTimeout(() => {
+          copyBtn.textContent = originalText;
+        }, 2000);
+      }).catch(err => {
+        alert('Failed to copy text. Please select and copy manually.');
+        console.error('Copy failed:', err);
       });
     }
   </script>
 </body>
 </html>
-  
-  
