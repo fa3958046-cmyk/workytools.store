@@ -1,4 +1,3 @@
-  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Keyword Density Checker</title>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/2826354448"
+     crossorigin="anonymous"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,10 +16,7 @@
       padding: 0;
       text-align: center;
     }
-    h2 {
-      color: #007bff;
-      margin-top: 20px;
-    }
+    
     .container {
       max-width: 800px;
       margin: 0 auto;
@@ -26,6 +25,18 @@
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
+    
+    h2 {
+      color: #007bff;
+      margin-top: 0;
+    }
+    
+    .subtitle {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    
     .input-box {
       width: 100%;
       padding: 10px;
@@ -36,7 +47,14 @@
       min-height: 100px;
       resize: none;
       overflow-y: auto;
+      box-sizing: border-box;
+      text-align: left;
     }
+    
+    .keyword-input {
+      min-height: 40px !important;
+    }
+    
     button {
       padding: 10px 20px;
       background-color: #007bff;
@@ -46,51 +64,166 @@
       font-size: 16px;
       cursor: pointer;
       margin-top: 10px;
+      transition: background-color 0.3s;
+      width: 100%;
     }
+    
     button:hover {
       background-color: #0056b3;
     }
+    
     .result {
       margin-top: 20px;
       font-size: 18px;
       color: #333;
+      text-align: left;
+      display: none;
+      background-color: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
     }
+    
+    .result-item {
+      margin: 10px 0;
+      padding: 8px;
+      background-color: white;
+      border-radius: 5px;
+    }
+    
+    .density-bar {
+      height: 10px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      margin-top: 5px;
+      overflow: hidden;
+    }
+    
+    .density-fill {
+      height: 100%;
+      background-color: #007bff;
+      width: 0%;
+      transition: width 0.5s;
+    }
+    
     .note {
       margin-top: 10px;
       font-size: 14px;
       color: #555;
+      text-align: left;
     }
+    
     footer {
       margin-top: 30px;
       font-size: 14px;
       color: #888;
     }
+    
     footer a {
       text-decoration: none;
       color: #007bff;
+    }
+    
+    /* Ad Container Styles */
+    .ad-container {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+    
+    .ad-label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 5px;
+    }
+    
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+        margin: 10px;
+      }
+      
+      .ad-container {
+        margin: 15px 0;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h2>Keyword Density Checker</h2>
+  <!-- Top Ad -->
+  <div class="ad-container" style="max-width: 800px; margin: 20px auto;">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/2826354448"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <div class="container">
+    <h2>Keyword Density Checker</h2>
+    <p class="subtitle">Analyze how frequently keywords appear in your text</p>
+    
     <label for="textInput">Enter Text:</label>
     <div id="textInput" class="input-box" contenteditable="true" placeholder="Paste your text here..."></div>
 
     <label for="keywordInput">Enter Keyword:</label>
-    <input type="text" id="keywordInput" class="input-box" placeholder="Enter keyword to check density">
+    <input type="text" id="keywordInput" class="input-box keyword-input" placeholder="Enter keyword to check density">
 
     <button id="checkButton">Check Density</button>
-
-    <div id="resultContainer" class="result" style="display:none;">
-      <p><strong>Keyword Density:</strong> <span id="densityResult">0</span>%</p>
-      <p><strong>Keyword Count:</strong> <span id="keywordCount">0</span> occurrences</p>
-      <p><strong>Total Word Count:</strong> <span id="totalWords">0</span> words</p>
+    
+    <!-- Middle Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/2826354448"
+           data-ad-slot="YYYYYYYYYY"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
     </div>
 
-    <p class="note">This tool calculates the percentage of a given keyword in the text you provide.</p>
+    <div id="resultContainer" class="result">
+      <h3 style="margin-top: 0;">Analysis Results</h3>
+      <div class="result-item">
+        <strong>Keyword Density:</strong> <span id="densityResult">0</span>%
+        <div class="density-bar">
+          <div class="density-fill" id="densityBar"></div>
+        </div>
+      </div>
+      <div class="result-item">
+        <strong>Keyword Count:</strong> <span id="keywordCount">0</span> occurrences
+      </div>
+      <div class="result-item">
+        <strong>Total Word Count:</strong> <span id="totalWords">0</span> words
+      </div>
+    </div>
+
+    <p class="note">This tool calculates the percentage of a given keyword in the text you provide. Ideal for SEO analysis and content optimization.</p>
+  </div>
+
+  <!-- Bottom Ad -->
+  <div class="ad-container" style="max-width: 800px; margin: 20px auto;">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/2826354448"
+         data-ad-slot="ZZZZZZZZZZ"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 
   <footer>
@@ -105,13 +238,20 @@
     const densityResult = document.getElementById('densityResult');
     const keywordCount = document.getElementById('keywordCount');
     const totalWords = document.getElementById('totalWords');
+    const densityBar = document.getElementById('densityBar');
 
     // Function to calculate keyword density
     function calculateKeywordDensity() {
       const text = textInput.textContent.trim();
       const keyword = keywordInput.value.trim().toLowerCase();
-      if (!text || !keyword) {
-        alert("Please enter both text and a keyword.");
+      
+      if (!text) {
+        alert("Please enter some text to analyze.");
+        return;
+      }
+      
+      if (!keyword) {
+        alert("Please enter a keyword to check.");
         return;
       }
 
@@ -120,7 +260,9 @@
 
       let keywordCountValue = 0;
       words.forEach(word => {
-        if (word.toLowerCase() === keyword) {
+        // Remove punctuation and convert to lowercase for comparison
+        const cleanWord = word.replace(/[^\w]/g, '').toLowerCase();
+        if (cleanWord === keyword) {
           keywordCountValue++;
         }
       });
@@ -131,16 +273,41 @@
       keywordCount.textContent = keywordCountValue;
       totalWords.textContent = totalWordCount;
       densityResult.textContent = density.toFixed(2);
+      
+      // Update the density bar
+      densityBar.style.width = Math.min(density, 100) + '%';
 
       resultContainer.style.display = 'block';
+      
+      // Scroll to results
+      resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
     // Event listener to trigger the density calculation
     checkButton.addEventListener('click', calculateKeywordDensity);
-  </script>
+    
+    // Allow Enter key to trigger calculation in keyword input
+    keywordInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        calculateKeywordDensity();
+      }
+    });
 
+    // Add placeholder behavior for contenteditable div
+    textInput.addEventListener('focus', function() {
+      if (this.textContent === "Paste your text here...") {
+        this.textContent = "";
+      }
+    });
+    
+    textInput.addEventListener('blur', function() {
+      if (this.textContent === "") {
+        this.textContent = "Paste your text here...";
+      }
+    });
+
+    // Initialize placeholder text
+    textInput.textContent = "Paste your text here...";
+  </script>
 </body>
 </html>
-
-
-  
