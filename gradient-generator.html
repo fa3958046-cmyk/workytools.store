@@ -1,5 +1,4 @@
-  
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -10,8 +9,33 @@
     body {
       font-family: Arial, sans-serif;
       background: #f0f8ff;
-      padding: 30px;
+      padding: 20px;
       text-align: center;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .ad-container {
+      width: 100%;
+      max-width: 728px;
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .ad-placeholder {
+      width: 728px;
+      height: 90px;
+      background-color: #f5f5f5;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 14px;
     }
 
     h2 {
@@ -24,7 +48,7 @@
       border-radius: 10px;
       padding: 20px;
       max-width: 400px;
-      margin: auto;
+      margin: 10px 0;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
@@ -51,6 +75,10 @@
       font-weight: bold;
       word-break: break-word;
       color: #333;
+      background: #f9f9f9;
+      padding: 10px;
+      border-radius: 5px;
+      font-family: monospace;
     }
 
     button {
@@ -62,14 +90,58 @@
       border-radius: 8px;
       cursor: pointer;
       font-size: 16px;
+      transition: background-color 0.3s;
     }
 
     button:hover {
       background-color: #0056b3;
     }
+
+    /* Sidebar ad for larger screens */
+    .sidebar-ad {
+      display: none;
+      position: fixed;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @media (min-width: 1200px) {
+      .sidebar-ad {
+        display: block;
+      }
+    }
+
+    @media (max-width: 750px) {
+      .ad-placeholder {
+        width: 100%;
+        max-width: 320px;
+        height: 100px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .generator-box {
+        width: 90%;
+        padding: 15px;
+      }
+      
+      input[type="color"],
+      select {
+        width: 90%;
+        margin: 5px 0;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Top Banner Ad -->
+  <div class="ad-container">
+    <div class="ad-placeholder">
+      Google AdSense Banner (728x90)
+      <!-- Replace with your actual AdSense code -->
+    </div>
+  </div>
 
   <h2>CSS Gradient Generator</h2>
 
@@ -94,9 +166,33 @@
 
     <div class="preview" id="previewBox"></div>
     <div class="css-output" id="cssCode">CSS Code: -</div>
+    
+    <!-- Copy CSS Button -->
+    <button onclick="copyCSSCode()" style="background-color: #28a745;">Copy CSS Code</button>
+  </div>
+
+  <!-- Bottom Banner Ad -->
+  <div class="ad-container">
+    <div class="ad-placeholder">
+      Google AdSense Banner (728x90)
+      <!ca-app-pub-7767005422138501/2549639385>
+    </div>
+  </div>
+
+  <!-- Sidebar Ad (for larger screens) -->
+  <div class="sidebar-ad">
+    <div class="ad-placeholder" style="width: 160px; height: 600px;">
+      Google AdSense Sidebar (160x600)
+      <!ca-app-pub-7767005422138501/2549639385>
+    </div>
   </div>
 
   <script>
+    // Generate gradient on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      generateGradient();
+    });
+
     function generateGradient() {
       const color1 = document.getElementById("color1").value;
       const color2 = document.getElementById("color2").value;
@@ -110,10 +206,22 @@
       const cssOutput = document.getElementById("cssCode");
       cssOutput.textContent = `background: ${gradient};`;
     }
-  </script>
 
+    function copyCSSCode() {
+      const cssCode = document.getElementById("cssCode").textContent;
+      navigator.clipboard.writeText(cssCode).then(function() {
+        alert("CSS code copied to clipboard!");
+      }, function(err) {
+        console.error('Could not copy text: ', err);
+      });
+    }
+  </script>
+  
+  <!-- Google AdSense Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/2549639385" crossorigin="anonymous"></script>
+  <script>
+    // Initialize AdSense
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </body>
 </html>
- 
-  
-  
