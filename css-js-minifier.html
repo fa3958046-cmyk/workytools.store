@@ -1,5 +1,4 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -8,106 +7,445 @@
   <title>HTML/CSS/JS Minifier Tool</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f0f8ff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f8ff, #e6f0ff);
       padding: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin: 20px 0;
     }
 
     h2 {
       color: #007bff;
       text-align: center;
+      margin-bottom: 25px;
+      font-size: 32px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .input-section {
+      margin-bottom: 25px;
+    }
+
+    .code-type-selector {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .code-type-btn {
+      padding: 8px 16px;
+      font-size: 14px;
+      border: 2px solid #007bff;
+      background-color: #fff;
+      color: #007bff;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .code-type-btn.active {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .code-type-btn:hover {
+      background-color: #e6f2ff;
+    }
+
+    .input-label {
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #555;
     }
 
     #textBox {
-      width: 90%;
-      max-width: 600px;
-      min-height: 150px;
-      padding: 10px;
+      width: 100%;
+      min-height: 200px;
+      padding: 15px;
       font-size: 16px;
       border-radius: 8px;
-      border: 1px solid #ccc;
+      border: 2px solid #ddd;
       background: #fff;
       margin-bottom: 15px;
       outline: none;
       overflow-y: auto;
       white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      resize: vertical;
+      transition: border-color 0.3s;
+    }
+
+    #textBox:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
     button {
-      padding: 10px 20px;
+      padding: 12px 25px;
       font-size: 16px;
+      font-weight: 600;
       border: none;
       background-color: #007bff;
       color: white;
       border-radius: 8px;
       cursor: pointer;
-      margin-bottom: 15px;
+      transition: all 0.3s;
+      min-width: 140px;
     }
 
     button:hover {
       background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    #clearBtn {
+      background-color: #6c757d;
+    }
+
+    #clearBtn:hover {
+      background-color: #545b62;
+    }
+
+    #copyBtn {
+      background-color: #28a745;
+      display: none;
+    }
+
+    #copyBtn:hover {
+      background-color: #1e7e34;
+    }
+
+    .output-section {
+      margin-top: 25px;
     }
 
     #output {
       font-size: 16px;
-      margin-top: 20px;
       color: #333;
       white-space: pre-wrap;
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+      min-height: 100px;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
     }
 
-    .input-label {
-      margin-bottom: 10px;
+    .stats {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #666;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .ad-container {
+      margin: 25px auto;
+      padding: 15px;
+      background-color: #f5f9ff;
+      border-radius: 10px;
+      text-align: center;
+      border: 2px solid #007bff;
+      width: 90%;
+      max-width: 728px;
+      box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+    }
+
+    .ad-label {
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .info-section {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .info-section h3 {
+      color: #007bff;
+      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+      
+      h2 {
+        font-size: 26px;
+      }
+      
+      .button-group {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      button {
+        width: 100%;
+        max-width: 300px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h2>HTML/CSS/JS Minifier Tool</h2>
-
-  <div id="textBox" contenteditable="true" placeholder="Paste your HTML/CSS/JS code here..."></div>
-
-  <button onclick="minifyCode()">Minify Code</button>
-
-  <div id="output"></div>
+  <div class="container">
+    <h2>HTML/CSS/JS Minifier Tool</h2>
+    
+    <!-- Top Ad Container -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <!-- Google AdSense Ad Unit -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+    <div class="input-section">
+      <div class="code-type-selector">
+        <button class="code-type-btn active" onclick="setCodeType('html')">HTML</button>
+        <button class="code-type-btn" onclick="setCodeType('css')">CSS</button>
+        <button class="code-type-btn" onclick="setCodeType('js')">JavaScript</button>
+      </div>
+      
+      <div class="input-label">Paste your code here:</div>
+      <div id="textBox" contenteditable="true" placeholder="Paste your HTML, CSS, or JavaScript code here..."></div>
+      
+      <div class="button-group">
+        <button onclick="minifyCode()">Minify Code</button>
+        <button id="clearBtn" onclick="clearCode()">Clear</button>
+        <button id="copyBtn" onclick="copyToClipboard()">Copy Minified Code</button>
+      </div>
+    </div>
+    
+    <!-- Bottom Ad Container -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <!-- Google AdSense Ad Unit -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
+    <div class="output-section">
+      <div class="input-label">Minified Code:</div>
+      <div id="output">Your minified code will appear here...</div>
+      
+      <div class="stats" id="stats">
+        <span id="originalSize">Original size: 0 characters</span>
+        <span id="minifiedSize">Minified size: 0 characters</span>
+        <span id="reduction">Reduction: 0%</span>
+      </div>
+    </div>
+    
+    <div class="info-section">
+      <h3>About Minification</h3>
+      <p>Minification removes unnecessary characters from code without changing its functionality. This reduces file size and improves loading times.</p>
+      <p><strong>What gets removed:</strong> Whitespace, comments, and sometimes optional syntax elements.</p>
+    </div>
+  </div>
 
   <script>
+    let currentCodeType = 'html';
+    
+    function setCodeType(type) {
+      currentCodeType = type;
+      
+      // Update active button
+      document.querySelectorAll('.code-type-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Update placeholder text
+      const textBox = document.getElementById('textBox');
+      textBox.setAttribute('placeholder', `Paste your ${type.toUpperCase()} code here...`);
+    }
+    
     function minifyHTML(html) {
-      return html.replace(/\n/g, '').replace(/\s{2,}/g, ' ').replace(/<!--.*?-->/g, ''); // Remove whitespace and comments
+      // Remove comments
+      html = html.replace(/<!--[\s\S]*?-->/g, '');
+      // Remove whitespace between tags
+      html = html.replace(/>\s+</g, '><');
+      // Trim whitespace
+      html = html.trim();
+      return html;
     }
-
+    
     function minifyCSS(css) {
-      return css.replace(/\n/g, '').replace(/\s{2,}/g, ' ').replace(/\/\*.*?\*\//g, ''); // Remove whitespace and comments
+      // Remove comments
+      css = css.replace(/\/\*[\s\S]*?\*\//g, '');
+      // Remove unnecessary whitespace
+      css = css.replace(/\s+/g, ' ');
+      // Remove spaces around braces and colons
+      css = css.replace(/\s*{\s*/g, '{');
+      css = css.replace(/\s*}\s*/g, '}');
+      css = css.replace(/\s*:\s*/g, ':');
+      css = css.replace(/\s*;\s*/g, ';');
+      css = css.replace(/\s*,\s*/g, ',');
+      // Trim whitespace
+      css = css.trim();
+      return css;
     }
-
+    
     function minifyJS(js) {
-      return js.replace(/\n/g, '').replace(/\s{2,}/g, ' ').replace(/\/\/.*?\n/g, ''); // Remove whitespace and comments
+      // Basic minification - remove comments and whitespace
+      // Note: This is a simple implementation and may not handle all cases
+      
+      // Remove single-line comments
+      js = js.replace(/\/\/.*$/gm, '');
+      // Remove multi-line comments
+      js = js.replace(/\/\*[\s\S]*?\*\//g, '');
+      // Remove unnecessary whitespace
+      js = js.replace(/\s+/g, ' ');
+      // Remove spaces around operators
+      js = js.replace(/\s*([=+\-*\/<>!]?=)\s*/g, '$1');
+      // Trim whitespace
+      js = js.trim();
+      return js;
     }
-
+    
     function minifyCode() {
       const content = document.getElementById("textBox").innerText.trim();
+      const outputElement = document.getElementById("output");
+      const copyBtn = document.getElementById("copyBtn");
+      
       if (!content) {
-        document.getElementById("output").innerText = "Please paste some code to minify.";
+        outputElement.innerText = "Please paste some code to minify.";
+        copyBtn.style.display = 'none';
+        updateStats(0, 0);
         return;
       }
-
+      
       let minifiedCode = '';
-      if (content.startsWith('<!DOCTYPE html') || content.includes('<html>')) {
-        minifiedCode = minifyHTML(content);
-      } else if (content.includes('{') && content.includes('}')) {
-        minifiedCode = minifyCSS(content);
-      } else if (content.includes('function') || content.includes('var')) {
-        minifiedCode = minifyJS(content);
+      
+      try {
+        switch(currentCodeType) {
+          case 'html':
+            minifiedCode = minifyHTML(content);
+            break;
+          case 'css':
+            minifiedCode = minifyCSS(content);
+            break;
+          case 'js':
+            minifiedCode = minifyJS(content);
+            break;
+          default:
+            minifiedCode = content;
+        }
+        
+        outputElement.innerText = minifiedCode;
+        copyBtn.style.display = 'inline-block';
+        updateStats(content.length, minifiedCode.length);
+      } catch (error) {
+        outputElement.innerText = "Error minifying code. Please check your syntax.";
+        console.error(error);
+        copyBtn.style.display = 'none';
       }
-
-      document.getElementById("output").innerText = "Minified Code:\n" + minifiedCode;
     }
+    
+    function clearCode() {
+      document.getElementById("textBox").innerText = "";
+      document.getElementById("output").innerText = "Your minified code will appear here...";
+      document.getElementById("copyBtn").style.display = 'none';
+      updateStats(0, 0);
+    }
+    
+    function copyToClipboard() {
+      const outputText = document.getElementById("output").innerText;
+      
+      if (!outputText || outputText === "Your minified code will appear here...") {
+        alert("No minified code to copy!");
+        return;
+      }
+      
+      navigator.clipboard.writeText(outputText)
+        .then(() => {
+          // Visual feedback
+          const copyBtn = document.getElementById("copyBtn");
+          const originalText = copyBtn.innerText;
+          copyBtn.innerText = "Copied!";
+          copyBtn.style.backgroundColor = "#28a745";
+          
+          setTimeout(() => {
+            copyBtn.innerText = originalText;
+            copyBtn.style.backgroundColor = "#28a745";
+          }, 2000);
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+          alert("Failed to copy to clipboard. Please try again.");
+        });
+    }
+    
+    function updateStats(originalLength, minifiedLength) {
+      const originalSizeElement = document.getElementById("originalSize");
+      const minifiedSizeElement = document.getElementById("minifiedSize");
+      const reductionElement = document.getElementById("reduction");
+      
+      originalSizeElement.textContent = `Original size: ${originalLength} characters`;
+      minifiedSizeElement.textContent = `Minified size: ${minifiedLength} characters`;
+      
+      if (originalLength > 0) {
+        const reduction = Math.round((1 - minifiedLength / originalLength) * 100);
+        reductionElement.textContent = `Reduction: ${reduction}%`;
+      } else {
+        reductionElement.textContent = `Reduction: 0%`;
+      }
+    }
+    
+    // Initialize the page
+    window.onload = function() {
+      updateStats(0, 0);
+    };
   </script>
-
 </body>
 </html>
-
-  
-  
