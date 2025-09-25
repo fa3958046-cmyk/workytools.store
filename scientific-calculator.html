@@ -1,11 +1,15 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Scientific Calculator</title>
+
+    <!-- Google AdSense script -->
+    <script data-ad-client="ca-app-pub-7767005422138501/4959894890" async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,8 +17,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            flex-direction: column;
+            min-height: 100vh;
             margin: 0;
+            padding: 20px;
         }
 
         .calculator {
@@ -50,36 +56,33 @@
             transition: background-color 0.3s;
         }
 
-        .button:hover {
-            background-color: #007bff;
-            color: white;
-        }
+        .button:hover { background-color: #007bff; color: white; }
+        .button:active { background-color: #0056b3; }
+        .button.double { width: 130px; }
+        .button.clear { background-color: #ff4d4d; color: white; }
+        .button.equals { background-color: #28a745; color: white; }
+        .button.function { background-color: #17a2b8; color: white; }
 
-        .button:active {
-            background-color: #0056b3;
-        }
-
-        .button.double {
-            width: 130px;
-        }
-
-        .button.clear {
-            background-color: #ff4d4d;
-            color: white;
-        }
-
-        .button.equals {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .button.function {
-            background-color: #17a2b8;
-            color: white;
+        .ad-container {
+            margin: 20px 0;
+            text-align: center;
         }
     </style>
 </head>
 <body>
+
+    <!-- AdSense Ad above Calculator -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-app-pub-7767005422138501/4959894890"
+             data-ad-slot="YYYYYYYYYY"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
 
     <div class="calculator">
         <input type="text" id="display" disabled />
@@ -121,23 +124,32 @@
         </div>
     </div>
 
+    <!-- AdSense Ad below Calculator -->
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-app-pub-7767005422138501/4959894890"
+             data-ad-slot="ZZZZZZZZZZ"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
     <script>
         const display = document.getElementById('display');
 
-        // Append values to the display
         function appendToDisplay(value) {
             display.value += value;
         }
 
-        // Clear the display
         function clearDisplay() {
             display.value = '';
         }
 
-        // Evaluate the expression and show the result
         function calculate() {
             try {
-                // Replace square root and powers for easier eval() interpretation
                 let expression = display.value;
                 expression = expression.replace(/sqrt/g, 'Math.sqrt');
                 expression = expression.replace(/pow/g, 'Math.pow');
@@ -147,7 +159,6 @@
                 expression = expression.replace(/cos/g, 'Math.cos');
                 expression = expression.replace(/tan/g, 'Math.tan');
 
-                // Calculate the result
                 const result = eval(expression);
                 display.value = result;
             } catch (e) {
@@ -158,6 +169,3 @@
 
 </body>
 </html>
-
-  
-  
