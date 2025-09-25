@@ -1,10 +1,15 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PDF to Word Converter</title>
+
+  <!-- ✅ Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890"
+     crossorigin="anonymous"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -65,7 +70,20 @@
     <input type="file" id="pdfUpload" accept="application/pdf" />
     <button onclick="convertToWord()">Convert to Word</button>
     <p id="status"></p>
+
+    <!-- ✅ Google AdSense Ad Placement -->
+    <ins class="adsbygoogle"
+         style="display:block; margin-top:20px;"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
   </div>
+
+  <!-- ✅ AdSense Script Push -->
+  <script>
+       (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 
   <script>
     async function convertToWord() {
@@ -86,7 +104,9 @@
         status.textContent = 'Conversion successful! Download will start shortly.';
 
         // Simulate download
-        const blob = new Blob(["This is a mock Word document content."], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        const blob = new Blob(["This is a mock Word document content."], {
+          type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -98,4 +118,3 @@
   </script>
 </body>
 </html>
-  
