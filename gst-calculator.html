@@ -1,5 +1,4 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -11,10 +10,32 @@
       font-family: Arial, sans-serif;
       background: #f4faff;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
       margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .ad-container {
+      width: 100%;
+      max-width: 728px;
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .ad-placeholder {
+      width: 728px;
+      height: 90px;
+      background-color: #f5f5f5;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 14px;
     }
 
     .container {
@@ -25,6 +46,7 @@
       text-align: center;
       width: 90%;
       max-width: 400px;
+      margin: 10px 0;
     }
 
     h1 {
@@ -39,6 +61,7 @@
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 10px;
+      box-sizing: border-box;
     }
 
     button {
@@ -51,6 +74,7 @@
       cursor: pointer;
       margin-top: 10px;
       width: 100%;
+      transition: background-color 0.3s;
     }
 
     button:hover {
@@ -61,6 +85,37 @@
       margin-top: 20px;
       font-weight: bold;
       font-size: 18px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .result-line {
+      margin: 8px 0;
+    }
+
+    /* Sidebar ad for larger screens */
+    .sidebar-ad {
+      display: none;
+      position: fixed;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    @media (min-width: 1200px) {
+      .sidebar-ad {
+        display: block;
+      }
+    }
+
+    @media (max-width: 750px) {
+      .ad-placeholder {
+        width: 100%;
+        max-width: 320px;
+        height: 100px;
+      }
     }
 
     @media (max-width: 500px) {
@@ -71,6 +126,13 @@
   </style>
 </head>
 <body>
+  <!-- Top Banner Ad -->
+  <div class="ad-container">
+    <div class="ad-placeholder">
+      Google AdSense Banner (728x90)
+      <!-- ca-app-pub-7767005422138501/4959894890 -->
+    </div>
+  </div>
 
   <div class="container">
     <h1>GST Calculator</h1>
@@ -80,13 +142,29 @@
     <div class="result" id="result"></div>
   </div>
 
+  <!-- Bottom Banner Ad -->
+  <div class="ad-container">
+    <div class="ad-placeholder">
+      Google AdSense Banner (728x90)
+      <!--ca-app-pub-7767005422138501/4959894890 -->
+    </div>
+  </div>
+
+  <!-- Sidebar Ad (for larger screens) -->
+  <div class="sidebar-ad">
+    <div class="ad-placeholder" style="width: 160px; height: 600px;">
+      Google AdSense Sidebar (160x600)
+      <!ca-app-pub-7767005422138501/4959894890>
+    </div>
+  </div>
+
   <script>
     function calculateGST() {
       const amount = parseFloat(document.getElementById("amount").value);
       const gstRate = parseFloat(document.getElementById("gstRate").value);
 
       if (!amount || !gstRate || amount < 0 || gstRate < 0) {
-        document.getElementById("result").textContent = "Please enter valid values.";
+        document.getElementById("result").innerHTML = "Please enter valid values.";
         return;
       }
 
@@ -94,14 +172,32 @@
       const totalAmount = amount + gstAmount;
 
       document.getElementById("result").innerHTML = `
-        GST Amount: ₹${gstAmount.toFixed(2)}<br/>
-        Total Amount (Incl. GST): ₹${totalAmount.toFixed(2)}
+        <div class="result-line">Original Amount: ₹${amount.toFixed(2)}</div>
+        <div class="result-line">GST Rate: ${gstRate}%</div>
+        <div class="result-line">GST Amount: ₹${gstAmount.toFixed(2)}</div>
+        <div class="result-line" style="color: #007bff; font-size: 20px;">Total Amount (Incl. GST): ₹${totalAmount.toFixed(2)}</div>
       `;
     }
-  </script>
 
+    // Allow pressing Enter to calculate
+    document.getElementById("amount").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        calculateGST();
+      }
+    });
+
+    document.getElementById("gstRate").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        calculateGST();
+      }
+    });
+  </script>
+  
+  <!-- Google AdSense Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890" crossorigin="anonymous"></script>
+  <script>
+    // Initialize AdSense
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </body>
 </html>
-
-  
-  
