@@ -1,9 +1,13 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <title>Text Shortener Tool</title>
+
+  <!-- Google AdSense script -->
+  <script data-ad-client="ca-app-pub-7767005422138501/4959894890" async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -54,9 +58,27 @@
       margin-top: 20px;
       color: #333;
     }
+
+    .ad-container {
+      margin: 20px 0;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
+
+  <!-- AdSense Ad above tool -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="YYYYYYYYYY"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <h2>Text Shortener Tool</h2>
 
@@ -65,6 +87,19 @@
   <button onclick="shortenText()">Shorten Text</button>
 
   <div id="output"></div>
+
+  <!-- AdSense Ad below tool -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="ZZZZZZZZZZ"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <script>
     function shortenText() {
@@ -75,7 +110,6 @@
         return;
       }
       
-      // Shorten text to the first 100 characters and add ellipsis
       var shortened = content.substring(0, 100) + "...";
       document.getElementById("output").innerText = "Shortened Text: " + shortened;
     }
@@ -83,6 +117,3 @@
 
 </body>
 </html>
-
-  
-  
