@@ -1,11 +1,12 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HEX to RGB Converter</title>
+  <!-- Google AdSense Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890" crossorigin="anonymous"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,6 +15,7 @@
       flex-direction: column;
       align-items: center;
       padding: 30px;
+      margin: 0;
     }
 
     h2 {
@@ -29,6 +31,7 @@
       width: 100%;
       max-width: 400px;
       text-align: center;
+      margin: 20px 0;
     }
 
     input[type="text"] {
@@ -38,6 +41,7 @@
       margin-bottom: 15px;
       border: 1px solid #ccc;
       border-radius: 8px;
+      box-sizing: border-box;
     }
 
     button {
@@ -49,6 +53,7 @@
       border-radius: 8px;
       cursor: pointer;
       margin-bottom: 15px;
+      transition: background-color 0.3s;
     }
 
     button:hover {
@@ -59,10 +64,54 @@
       font-weight: bold;
       color: #333;
       margin-top: 10px;
+      min-height: 24px;
+    }
+
+    /* Ad container styles */
+    .ad-container {
+      width: 100%;
+      max-width: 400px;
+      margin: 20px 0;
+      text-align: center;
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .ad-label {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 500px) {
+      body {
+        padding: 15px;
+      }
+      
+      .converter, .ad-container {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Top Ad Container -->
+  <div class="ad-container">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <h2>HEX to RGB Converter</h2>
 
@@ -70,6 +119,20 @@
     <input type="text" id="hexInput" placeholder="Enter HEX code e.g. #ff5733" />
     <button onclick="convertHexToRgb()">Convert</button>
     <div class="result" id="rgbResult">RGB: -</div>
+  </div>
+
+  <!-- Bottom Ad Container -->
+  <div class="ad-container">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="0987654321"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 
   <script>
@@ -91,10 +154,14 @@
         output.textContent = "Invalid HEX code!";
       }
     }
+    
+    // Allow conversion with Enter key
+    document.getElementById("hexInput").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+        convertHexToRgb();
+      }
+    });
   </script>
 
 </body>
 </html>
-
-  
-  
