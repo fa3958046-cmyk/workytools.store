@@ -1,11 +1,15 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text Encryptor/Decryptor Tool</title>
+
+  <!-- Google AdSense script -->
+  <script data-ad-client="ca-app-pub-7767005422138501/4959894890" async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -36,6 +40,16 @@
       white-space: pre-wrap;
     }
 
+    input[type="number"] {
+      padding: 8px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+      width: 100px;
+      text-align: center;
+    }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -44,7 +58,7 @@
       color: white;
       border-radius: 8px;
       cursor: pointer;
-      margin-bottom: 15px;
+      margin: 5px;
     }
 
     button:hover {
@@ -57,12 +71,31 @@
       color: #333;
     }
 
+    .ad-container {
+      margin: 20px 0;
+      text-align: center;
+    }
+
     .input-label {
       margin-bottom: 10px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
+
+  <!-- AdSense Ad above tool -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="YYYYYYYYYY"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <h2>Text Encryptor/Decryptor Tool</h2>
 
@@ -71,10 +104,25 @@
   <label class="input-label" for="shift">Enter Shift Value (for Caesar Cipher):</label>
   <input type="number" id="shift" value="3" min="1" max="25" />
 
-  <button onclick="encryptText()">Encrypt Text</button>
-  <button onclick="decryptText()">Decrypt Text</button>
+  <div>
+    <button onclick="encryptText()">Encrypt Text</button>
+    <button onclick="decryptText()">Decrypt Text</button>
+  </div>
 
   <div id="output"></div>
+
+  <!-- AdSense Ad below tool -->
+  <div class="ad-container">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="ZZZZZZZZZZ"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
 
   <script>
     function caesarCipher(str, shift) {
@@ -82,9 +130,9 @@
         .map(char => {
           const charCode = char.charCodeAt(0);
           if (char >= 'a' && char <= 'z') {
-            return String.fromCharCode(((charCode - 97 + shift) % 26) + 97);
+            return String.fromCharCode(((charCode - 97 + shift + 26) % 26) + 97);
           } else if (char >= 'A' && char <= 'Z') {
-            return String.fromCharCode(((charCode - 65 + shift) % 26) + 65);
+            return String.fromCharCode(((charCode - 65 + shift + 26) % 26) + 65);
           } else {
             return char;
           }
@@ -121,6 +169,3 @@
 
 </body>
 </html>
-
-  
-  
