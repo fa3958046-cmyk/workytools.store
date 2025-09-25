@@ -1,5 +1,4 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -12,13 +11,13 @@
       font-family: Arial, sans-serif;
       background-color: #ffffff;
       color: #333;
+      text-align: center;
     }
 
     .container {
       max-width: 500px;
       margin: auto;
       padding: 2rem;
-      text-align: center;
     }
 
     h1 {
@@ -51,19 +50,55 @@
       margin-top: 1.5rem;
     }
 
+    .ads-box {
+      margin: 20px auto;
+      text-align: center;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 1rem;
       }
     }
   </style>
+
+  <!-- ✅ Google AdSense Script (Add only once in head) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890"
+     crossorigin="anonymous"></script>
 </head>
 <body>
+  
+  <!-- ✅ Top Ad -->
+  <div class="ads-box">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="1111111111"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <div class="container">
     <h1>PDF Compressor</h1>
     <input type="file" id="pdfInput" accept="application/pdf" />
     <button class="button" id="compressBtn" disabled>Compress PDF</button>
     <a id="downloadLink" class="button" download="compressed.pdf">Download Compressed PDF</a>
+  </div>
+
+  <!-- ✅ Bottom Ad -->
+  <div class="ads-box">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/4959894890"
+         data-ad-slot="2222222222"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 
   <script type="module">
@@ -105,5 +140,3 @@
   </script>
 </body>
 </html>
-
-  
