@@ -1,11 +1,13 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Image Rotator/Flipper Tool</title>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890"
+     crossorigin="anonymous"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -24,6 +26,13 @@
 
     h1 {
       color: #007bff;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 14px;
     }
 
     .upload-section {
@@ -35,6 +44,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 10px;
     }
 
     button {
@@ -42,11 +52,11 @@
       color: white;
       border: none;
       padding: 10px 20px;
-      margin: 5px;
       cursor: pointer;
       border-radius: 5px;
       flex: 1 1 40%;
       max-width: 180px;
+      transition: background-color 0.3s;
     }
 
     button:hover {
@@ -59,6 +69,7 @@
       overflow: auto;
       border: 1px solid #ddd;
       padding: 10px;
+      border-radius: 5px;
     }
 
     #image-preview {
@@ -71,6 +82,31 @@
       margin-top: 20px;
     }
 
+    #download-link button {
+      background-color: #28a745;
+      max-width: 250px;
+    }
+
+    #download-link button:hover {
+      background-color: #218838;
+    }
+
+    /* Ad Container Styles */
+    .ad-container {
+      text-align: center;
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+      border: 1px solid #e9ecef;
+    }
+
+    .ad-label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 5px;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 10px;
@@ -81,27 +117,78 @@
         max-width: none;
         margin-top: 10px;
       }
+      
+      .ad-container {
+        margin: 15px 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Top Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
     <h1>Image Rotator/Flipper Tool</h1>
+    <p class="description">Upload an image and rotate or flip it as needed</p>
+    
     <div class="upload-section">
       <input type="file" id="image-upload" accept="image/*">
     </div>
+    
+    <!-- Middle Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="YYYYYYYYYY"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
     <div class="controls">
       <button id="rotate-left">Rotate Left</button>
       <button id="rotate-right">Rotate Right</button>
       <button id="flip-horizontal">Flip Horizontal</button>
       <button id="flip-vertical">Flip Vertical</button>
     </div>
+    
     <div class="preview">
       <img id="image-preview" src="" alt="Image Preview" />
     </div>
+    
+    <!-- Bottom Ad -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="ZZZZZZZZZZ"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
     <div class="download">
       <a id="download-link" href="#" download="edited_image.jpg">
-        <button>Download Image</button>
+        <button>Download Edited Image</button>
       </a>
     </div>
   </div>
@@ -129,6 +216,7 @@
           flipHorizontal = false;
           flipVertical = false;
           imagePreview.style.transform = '';
+          updateDownloadLink();
         };
         reader.readAsDataURL(file);
       }
@@ -162,7 +250,7 @@
     }
 
     function updateDownloadLink() {
-      if (!imagePreview.src) return;
+      if (!imagePreview.src || imagePreview.src === window.location.href) return;
 
       let canvas = document.createElement('canvas');
       let ctx = canvas.getContext('2d');
@@ -193,4 +281,3 @@
   </script>
 </body>
 </html>
-  
