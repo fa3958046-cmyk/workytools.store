@@ -1,5 +1,4 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -13,8 +12,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
       margin: 0;
+      padding: 20px;
     }
 
     .container {
@@ -39,6 +39,7 @@
       border: 1px solid #ccc;
       border-radius: 10px;
       margin-bottom: 20px;
+      box-sizing: border-box;
     }
 
     button {
@@ -49,6 +50,7 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      width: 100%;
     }
 
     button:hover {
@@ -60,11 +62,33 @@
       font-size: 1.2rem;
       font-weight: bold;
       color: #333;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ad-container {
+      margin: 25px 0;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .ad-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 5px;
     }
 
     @media (max-width: 600px) {
       .container {
         padding: 20px;
+      }
+      
+      body {
+        padding: 10px;
       }
     }
   </style>
@@ -73,9 +97,44 @@
 
   <div class="container">
     <h1>Age Calculator</h1>
+    
+    <!-- Ad Container - Top -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <!-- Google AdSense Ad Unit -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/1538975891"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/1538975891"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
     <input type="date" id="dob" />
     <button onclick="calculateAge()">Calculate Age</button>
     <div id="result"></div>
+    
+    <!-- Ad Container - Bottom -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <!-- Google AdSense Ad Unit -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+           crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
   </div>
 
   <script>
@@ -109,5 +168,3 @@
 
 </body>
 </html>
-
-  
