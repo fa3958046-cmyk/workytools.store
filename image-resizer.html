@@ -1,11 +1,13 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Image Resizer Tool</title>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/4959894890"
+     crossorigin="anonymous"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -41,6 +43,7 @@
     canvas {
       max-width: 100%;
       margin-top: 1rem;
+      border: 1px solid #ddd;
     }
 
     button {
@@ -52,10 +55,41 @@
       cursor: pointer;
       width: 100%;
       margin-top: 1rem;
+      transition: background-color 0.3s;
     }
 
     button:hover {
       background-color: #0056b3;
+    }
+
+    #downloadLink {
+      display: block;
+      text-align: center;
+      margin-top: 1rem;
+      padding: 0.7rem;
+      background-color: #28a745;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    #downloadLink:hover {
+      background-color: #218838;
+    }
+
+    .ad-container {
+      text-align: center;
+      margin: 1rem 0;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 5px;
+    }
+
+    .ad-label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 5px;
     }
 
     @media (max-width: 600px) {
@@ -63,18 +97,67 @@
         margin: 1rem;
         padding: 1rem;
       }
+      
+      .ad-container {
+        margin: 0.5rem 0;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- Ad at the top -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
     <h1>Image Resizer</h1>
+    <p style="text-align: center; color: #666;">Upload an image and resize it to your desired dimensions</p>
+    
     <input type="file" id="upload" accept="image/*" />
-    <input type="number" id="width" placeholder="Width (px)" />
-    <input type="number" id="height" placeholder="Height (px)" />
+    <input type="number" id="width" placeholder="Width (px)" min="1" />
+    <input type="number" id="height" placeholder="Height (px)" min="1" />
     <button onclick="resizeImage()">Resize Image</button>
+    
+    <!-- Ad in the middle -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    
     <canvas id="canvas"></canvas>
     <a id="downloadLink" style="display:none;" download="resized-image.png">Download Resized Image</a>
+    
+    <!-- Ad at the bottom -->
+    <div class="ad-container">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="XXXXXXXXXX"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
   </div>
 
   <script>
@@ -111,11 +194,7 @@
       const downloadLink = document.getElementById('downloadLink');
       downloadLink.href = canvas.toDataURL();
       downloadLink.style.display = 'block';
-      downloadLink.textContent = 'Download Resized Image';
     }
   </script>
 </body>
 </html>
-
-  
-  
