@@ -1,20 +1,41 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Loan EMI Calculator</title>
+  <!-- Google AdSense Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/2826354448"
+     crossorigin="anonymous"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
       background: #f4faff;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
       margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .ad-container {
+      text-align: center;
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+      width: 100%;
+      max-width: 450px;
+    }
+
+    .ad-label {
+      font-size: 0.8rem;
+      color: #6c757d;
+      margin-bottom: 5px;
     }
 
     .container {
@@ -23,22 +44,36 @@
       border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
       text-align: center;
-      width: 90%;
+      width: 100%;
       max-width: 450px;
+      margin: 10px 0;
     }
 
     h1 {
       color: #007bff;
       margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
     }
 
     input {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
+      padding: 12px;
       font-size: 16px;
       border: 1px solid #ccc;
       border-radius: 10px;
+      box-sizing: border-box;
     }
 
     button {
@@ -51,6 +86,7 @@
       cursor: pointer;
       margin-top: 10px;
       width: 100%;
+      transition: background-color 0.3s;
     }
 
     button:hover {
@@ -58,27 +94,164 @@
     }
 
     .result {
-      margin-top: 20px;
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #f0f8ff;
+      border-radius: 10px;
+      text-align: left;
+      display: none;
+    }
+
+    .result h3 {
+      margin-top: 0;
+      color: #007bff;
+      text-align: center;
+    }
+
+    .result-item {
+      margin: 10px 0;
+      padding: 8px;
+      background-color: white;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .result-value {
       font-weight: bold;
-      font-size: 18px;
+      color: #007bff;
+    }
+
+    .chart-container {
+      margin-top: 20px;
+      height: 150px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-around;
+      padding: 10px;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .chart-bar {
+      width: 30%;
+      background-color: #007bff;
+      border-radius: 4px 4px 0 0;
+      transition: height 0.5s;
+    }
+
+    .chart-label {
+      text-align: center;
+      font-size: 12px;
+      margin-top: 5px;
+      color: #666;
     }
 
     @media (max-width: 500px) {
+      body {
+        padding: 10px;
+      }
+      
       .container {
         padding: 20px;
+      }
+      
+      .ad-container {
+        margin: 5px 0;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Top Ad -->
+  <div class="ad-container">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/2826354448"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
   <div class="container">
     <h1>Loan EMI Calculator</h1>
-    <input type="number" id="loanAmount" placeholder="Loan Amount (₹)" />
-    <input type="number" id="interestRate" placeholder="Annual Interest Rate (%)" />
-    <input type="number" id="loanTenure" placeholder="Loan Tenure (in months)" />
+    
+    <div class="input-group">
+      <label for="loanAmount">Loan Amount (₹)</label>
+      <input type="number" id="loanAmount" placeholder="e.g., 500000" min="1" />
+    </div>
+    
+    <div class="input-group">
+      <label for="interestRate">Annual Interest Rate (%)</label>
+      <input type="number" id="interestRate" placeholder="e.g., 8.5" min="0.1" step="0.1" />
+    </div>
+    
+    <div class="input-group">
+      <label for="loanTenure">Loan Tenure (in months)</label>
+      <input type="number" id="loanTenure" placeholder="e.g., 60" min="1" />
+    </div>
+    
     <button onclick="calculateEMI()">Calculate EMI</button>
-    <div class="result" id="result"></div>
+    
+    <!-- Middle Ad -->
+    <div class="ad-container" style="margin-top: 20px;">
+      <div class="ad-label">Advertisement</div>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/2826354448"
+           data-ad-slot="YYYYYYYYYY"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <div class="result" id="result">
+      <h3>Loan Breakdown</h3>
+      <div class="result-item">
+        <span>Monthly EMI:</span>
+        <span class="result-value" id="emiValue">₹0</span>
+      </div>
+      <div class="result-item">
+        <span>Total Interest:</span>
+        <span class="result-value" id="interestValue">₹0</span>
+      </div>
+      <div class="result-item">
+        <span>Total Payment:</span>
+        <span class="result-value" id="totalValue">₹0</span>
+      </div>
+      
+      <div class="chart-container">
+        <div>
+          <div class="chart-bar" id="principalBar" style="height: 0%;"></div>
+          <div class="chart-label">Principal</div>
+        </div>
+        <div>
+          <div class="chart-bar" id="interestBar" style="height: 0%;"></div>
+          <div class="chart-label">Interest</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Ad -->
+  <div class="ad-container">
+    <div class="ad-label">Advertisement</div>
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-app-pub-7767005422138501/2826354448"
+         data-ad-slot="ZZZZZZZZZZ"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 
   <script>
@@ -88,7 +261,7 @@
       const tenure = parseInt(document.getElementById("loanTenure").value);
 
       if (!loanAmount || !annualInterestRate || !tenure || loanAmount <= 0 || annualInterestRate <= 0 || tenure <= 0) {
-        document.getElementById("result").textContent = "Please enter valid inputs.";
+        alert("Please enter valid positive values for all fields.");
         return;
       }
 
@@ -99,16 +272,31 @@
       const totalPayment = emi * tenure;
       const totalInterest = totalPayment - loanAmount;
 
-      document.getElementById("result").innerHTML = `
-        Monthly EMI: ₹${emi.toFixed(2)}<br/>
-        Total Interest: ₹${totalInterest.toFixed(2)}<br/>
-        Total Payment: ₹${totalPayment.toFixed(2)}
-      `;
+      // Update the result display
+      document.getElementById("emiValue").textContent = "₹" + emi.toFixed(2);
+      document.getElementById("interestValue").textContent = "₹" + totalInterest.toFixed(2);
+      document.getElementById("totalValue").textContent = "₹" + totalPayment.toFixed(2);
+      
+      // Show the result section
+      document.getElementById("result").style.display = 'block';
+      
+      // Update the chart
+      const principalPercentage = (loanAmount / totalPayment) * 100;
+      const interestPercentage = (totalInterest / totalPayment) * 100;
+      
+      document.getElementById("principalBar").style.height = principalPercentage + "%";
+      document.getElementById("interestBar").style.height = interestPercentage + "%";
+      
+      // Scroll to results
+      document.getElementById("result").scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-  </script>
 
+    // Allow Enter key to trigger calculation
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        calculateEMI();
+      }
+    });
+  </script>
 </body>
 </html>
-
-  
-  
