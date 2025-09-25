@@ -1,65 +1,99 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Currency Converter</title>
+  <title>Currency Converter (Live Rates)</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f4faff;
+      background: #f0f8ff;
+      padding: 20px;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
-      margin: 0;
     }
 
     .container {
       background: #fff;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
-      text-align: center;
-      width: 90%;
-      max-width: 450px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
     }
 
     h1 {
+      text-align: center;
       color: #007bff;
-      margin-bottom: 20px;
+    }
+
+    .input-group {
+      margin: 15px 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
     }
 
     input, select {
       width: 100%;
       padding: 10px;
-      margin: 10px 0;
-      font-size: 16px;
       border: 1px solid #ccc;
-      border-radius: 10px;
-    }
-
-    button {
-      background-color: #007bff;
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
+      border-radius: 8px;
       font-size: 16px;
-      border-radius: 10px;
-      cursor: pointer;
-      width: 100%;
     }
 
-    button:hover {
-      background-color: #0056b3;
+    .swap-btn, .convert-btn {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #fff;
+    }
+
+    .swap-btn {
+      background-color: #6c757d;
+    }
+
+    .convert-btn {
+      background-color: #007bff;
     }
 
     .result {
       margin-top: 20px;
-      font-weight: bold;
       font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .rate-info {
+      text-align: center;
+      margin-top: 5px;
+      color: #555;
+    }
+
+    .ad-container {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .ad-label {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 5px;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #666;
+      text-align: center;
     }
   </style>
 </head>
@@ -67,53 +101,129 @@
 
   <div class="container">
     <h1>Currency Converter</h1>
-    <input type="number" id="amount" placeholder="Enter amount" />
-    
-    <select id="fromCurrency">
-      <option value="USD">USD - US Dollar</option>
-      <option value="INR">INR - Indian Rupee</option>
-      <option value="EUR">EUR - Euro</option>
-    </select>
+    <div class="input-group">
+      <label for="amount">Amount</label>
+      <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01" />
+    </div>
+    <div class="input-group">
+      <label for="fromCurrency">From Currency</label>
+      <select id="fromCurrency">
+        <option value="USD">USD - US Dollar</option>
+        <option value="EUR">EUR - Euro</option>
+        <option value="GBP">GBP - British Pound</option>
+        <option value="JPY">JPY - Japanese Yen</option>
+        <option value="INR">INR - Indian Rupee</option>
+        <option value="CAD">CAD - Canadian Dollar</option>
+        <option value="AUD">AUD - Australian Dollar</option>
+        <option value="CHF">CHF - Swiss Franc</option>
+      </select>
+    </div>
+    <button class="swap-btn" onclick="swapCurrencies()">⇅ Swap</button>
+    <div class="input-group">
+      <label for="toCurrency">To Currency</label>
+      <select id="toCurrency">
+        <option value="INR">INR - Indian Rupee</option>
+        <option value="USD">USD - US Dollar</option>
+        <option value="EUR">EUR - Euro</option>
+        <option value="GBP">GBP - British Pound</option>
+        <option value="JPY">JPY - Japanese Yen</option>
+        <option value="CAD">CAD - Canadian Dollar</option>
+        <option value="AUD">AUD - Australian Dollar</option>
+        <option value="CHF">CHF - Swiss Franc</option>
+      </select>
+    </div>
 
-    <select id="toCurrency">
-      <option value="INR">INR - Indian Rupee</option>
-      <option value="USD">USD - US Dollar</option>
-      <option value="EUR">EUR - Euro</option>
-    </select>
+    <button class="convert-btn" onclick="convertCurrency()">Convert Currency</button>
 
-    <button onclick="convertCurrency()">Convert</button>
-
-    <div class="result" id="result"></div>
+    <div class="result" id="result">Enter amount to convert</div>
+    <div class="rate-info" id="rateInfo"></div>
   </div>
 
-  <script>
-    // Fixed exchange rates
-    const exchangeRates = {
-      USD: { USD: 1, INR: 83.2, EUR: 0.92 },
-      INR: { USD: 0.012, INR: 1, EUR: 0.011 },
-      EUR: { USD: 1.09, INR: 90.5, EUR: 1 }
-    };
+  <div class="ad-container">
+    <div class="ad-label">Advertisement</div>
+    <div class="ad-unit">
+      <!-- AdSense Ad Unit -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+  </div>
 
-    function convertCurrency() {
+  <footer>
+    <p>Currency Converter &copy; 2025 | Rates fetched live from API</p>
+  </footer>
+
+  <script>
+    const API_KEY = 'AIzaSyDmJSaGYW5Xhdk51de_SBMdARTp7CwCzlU'; // <-- यहाँ अपनी API key डालो
+    const API_BASE = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/`;
+
+    async function fetchRates(base) {
+      try {
+        const response = await fetch(API_BASE + base);
+        const data = await response.json();
+        if (data.result === "success") {
+          return data.conversion_rates;
+        } else {
+          console.error("API error:", data);
+          return null;
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        return null;
+      }
+    }
+
+    async function convertCurrency() {
       const amount = parseFloat(document.getElementById("amount").value);
       const from = document.getElementById("fromCurrency").value;
       const to = document.getElementById("toCurrency").value;
 
       if (!amount || amount <= 0) {
         document.getElementById("result").textContent = "Please enter a valid amount.";
+        document.getElementById("rateInfo").textContent = "";
         return;
       }
 
-      const rate = exchangeRates[from][to];
+      const rates = await fetchRates(from);
+      if (!rates) {
+        document.getElementById("result").textContent = "Error fetching rates.";
+        document.getElementById("rateInfo").textContent = "";
+        return;
+      }
+
+      if (!rates[to]) {
+        document.getElementById("result").textContent = "Conversion rate not available.";
+        document.getElementById("rateInfo").textContent = "";
+        return;
+      }
+
+      const rate = rates[to];
       const convertedAmount = (amount * rate).toFixed(2);
 
-      document.getElementById("result").textContent = 
-        `${amount} ${from} = ${convertedAmount} ${to}`;
+      document.getElementById("result").innerHTML =
+        `${amount} ${from} = <span style="color:#3498db">${convertedAmount} ${to}</span>`;
+
+      document.getElementById("rateInfo").textContent = `1 ${from} = ${rate.toFixed(4)} ${to}`;
+    }
+
+    function swapCurrencies() {
+      const fromSel = document.getElementById("fromCurrency");
+      const toSel = document.getElementById("toCurrency");
+      const tmp = fromSel.value;
+      fromSel.value = toSel.value;
+      toSel.value = tmp;
+
+      const amt = parseFloat(document.getElementById("amount").value);
+      if (amt && amt > 0) {
+        convertCurrency();
+      }
     }
   </script>
-
 </body>
 </html>
-
-  
-  
