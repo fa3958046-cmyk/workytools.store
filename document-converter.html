@@ -1,5 +1,4 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -13,7 +12,7 @@
       background-color: #f4faff;
       color: #333;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
       min-height: 100vh;
     }
@@ -26,6 +25,7 @@
       max-width: 450px;
       width: 100%;
       text-align: center;
+      margin: 1rem 0;
     }
 
     h1 {
@@ -83,15 +83,48 @@
       display: inline-block;
     }
 
+    /* Ad container styles */
+    .ad-container {
+      margin: 1rem 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .ad-placeholder {
+      width: 300px;
+      height: 250px;
+      background-color: #f5f5f5;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 14px;
+    }
+
     @media (max-width: 600px) {
       .container {
         padding: 1rem;
         margin: 1rem;
       }
+      
+      .ad-placeholder {
+        width: 100%;
+        max-width: 300px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Top Ad Container -->
+  <div class="ad-container">
+    <div class="ad-placeholder">
+      Google AdSense Ad (300x250)
+      <!-- Replace this with your actual AdSense code -->
+    </div>
+  </div>
+
   <div class="container">
     <h1>Document Converter</h1>
     <input type="file" id="docInput" accept=".txt,.doc,.docx,.pdf" />
@@ -104,6 +137,14 @@
 
     <button class="button" id="convertBtn" disabled>Convert</button>
     <a id="downloadLink" download>Download Converted File</a>
+  </div>
+
+  <!-- Bottom Ad Container -->
+  <div class="ad-container">
+    <div class="ad-placeholder">
+      Google AdSense Ad (300x250)
+      <!-- Replace this with your actual AdSense code -->
+    </div>
   </div>
 
   <script>
@@ -165,8 +206,12 @@
       }
     });
   </script>
+  
+  <!-- Google AdSense Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/2549639385" crossorigin="anonymous"></script>
+  <script>
+    // Initialize AdSense
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </body>
 </html>
-
-  
-  
