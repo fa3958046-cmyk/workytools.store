@@ -1,11 +1,15 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>QR Code Generator</title>
+
+  <!-- Google AdSense script -->
+  <script data-ad-client="ca-app-pub-7767005422138501/4959894890" async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -67,15 +71,49 @@
     #downloadBtn:hover {
       background-color: #1e7e34;
     }
+
+    /* Ad container spacing */
+    .ad-container {
+      margin: 20px 0;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <div class="container">
+
+    <!-- AdSense Ad above QR Generator -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="YYYYYYYYYY"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
     <h2>QR Code Generator</h2>
     <input type="text" id="qrText" placeholder="Enter text or URL" />
     <button onclick="generateQR()">Generate QR</button>
     <div id="qrcode"></div>
     <button id="downloadBtn" onclick="downloadQR()">Download QR</button>
+
+    <!-- AdSense Ad below QR Generator -->
+    <div class="ad-container">
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-app-pub-7767005422138501/4959894890"
+           data-ad-slot="ZZZZZZZZZZ"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+           (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
   </div>
 
   <!-- QRCode.js CDN -->
@@ -106,7 +144,7 @@
 
       setTimeout(() => {
         downloadBtn.style.display = "inline-block";
-      }, 500); // wait to ensure canvas is rendered
+      }, 500);
     }
 
     function downloadQR() {
@@ -121,6 +159,3 @@
   </script>
 </body>
 </html>
-
-  
-  
