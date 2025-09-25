@@ -1,5 +1,4 @@
-  
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <link rel="icon" href="faveicon-16×16.png" type="image/x-icon">
@@ -14,11 +13,19 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      margin: 0;
+    }
+
+    .header {
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 20px;
     }
 
     h2 {
       color: #007bff;
       text-align: center;
+      margin-top: 0;
     }
 
     .content-box {
@@ -61,11 +68,48 @@
       white-space: pre-wrap;
       word-break: break-all;
     }
+
+    /* Ad container styles */
+    .ad-container {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .ad-placeholder {
+      width: 300px;
+      height: 250px;
+      background-color: #f5f5f5;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media (max-width: 650px) {
+      .ad-placeholder {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Top Ad Container -->
+  <div class="ad-container">
+    <div class="ad-placeholder">
+      Google AdSense Ad (300x250)
+      <!-- Replace this with your actual AdSense code -->
+    </div>
+  </div>
 
-  <h2>Base64 Encoder / Decoder</h2>
+  <div class="header">
+    <h2>Base64 Encoder / Decoder</h2>
+  </div>
 
   <div id="inputBox" class="content-box" contenteditable="true" placeholder="Enter text here..."></div>
 
@@ -75,6 +119,14 @@
   </div>
 
   <div id="output"></div>
+
+  <!-- Bottom Ad Container -->
+  <div class="ad-container">
+    <div class="ad-placeholder">
+      Google AdSense Ad (300x250)
+      <!-- Replace this with your actual AdSense code -->
+    </div>
+  </div>
 
   <script>
     function encodeBase64() {
@@ -96,10 +148,29 @@
         document.getElementById("output").innerText = "Invalid Base64 string.";
       }
     }
-  </script>
 
+    // Add placeholder text functionality
+    document.getElementById("inputBox").addEventListener("focus", function() {
+      if (this.innerText === "Enter text here...") {
+        this.innerText = "";
+      }
+    });
+
+    document.getElementById("inputBox").addEventListener("blur", function() {
+      if (this.innerText === "") {
+        this.innerText = "Enter text here...";
+      }
+    });
+
+    // Initialize placeholder text
+    document.getElementById("inputBox").innerText = "Enter text here...";
+  </script>
+  
+  <!-- Google AdSense Code -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-7767005422138501/2549639385" crossorigin="anonymous"></script>
+  <script>
+    // Initialize AdSense
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </body>
 </html>
-
-  
-  
